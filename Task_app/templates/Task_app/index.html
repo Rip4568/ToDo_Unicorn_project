@@ -7,9 +7,8 @@
 {% block title %}Pagina Principal{% endblock title %}
 
 {% block content %}
-    {{csrf_token}} {% comment %} mostrar o csrf atual {% endcomment %}
-    <p>Pagina Principal carregada com sucesso</p>
-    
+    <p>Token atual: {{csrf_token}}</p>
+
     {% unicorn 'task-dynamic' %}
     {% for task in tasks %}
       <div class="card mb-1">
@@ -17,6 +16,7 @@
           <div class="container">
             <div class="row">
               <p class="col-8">{{task.titulo}}</p>
+              <button id="deleteTask{{task.id}}" class="btn btn-outline-warning">Editar Task id={{task.id}}</button>
               <button id="deleteTask{{task.id}}" class="btn btn-outline-danger">Deletar Task id={{task.id}}</button>
             </div>
           </div>

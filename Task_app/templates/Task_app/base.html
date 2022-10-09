@@ -1,10 +1,10 @@
 {% load static %}
 
 <!doctype html>
-{% load unicorn %}
+{% load unicorn %}{% comment %} carregamento do unicorn {% endcomment %}
 <html lang="en">
   <head>
-    {% unicorn_scripts %}
+    {% unicorn_scripts %} {% comment %} carregamento dos scripts {% endcomment %}
     <title>{% block title %}Pagina Base{% endblock title %}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
     {% block head %}{% endblock head %}
   </head>
   <body>
-    {% csrf_token %}
+    {% csrf_token %} {% comment %} necessario para a validação dos forms unicorns {% endcomment %}
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="#">Multi Task Unicorn</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -27,7 +27,8 @@
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ações</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Deletar todas as Tasks</a>
+                        {% comment %} <a class="dropdown-item" href="#">{% unicorn 'task-delete-all' %}</a> {% endcomment %}
+                        <a class="dropdown-item" href="{% url 'Task_app:deletar_todas_as_tasks' %}">Deletar todas as tasks</a>
                         <a class="dropdown-item" href="#">Adicionar 3 Tasks aleatorias</a>
                     </div>
                 </li>

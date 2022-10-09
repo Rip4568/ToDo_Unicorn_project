@@ -1,9 +1,10 @@
+{% load static %}
 <div>
-    {% if error %}
-        {{error}}
-    {% endif %}
-    <form unicorn:submit.prevent.lazy method="post" class="form-inline justify-content-center mx-3">
+    <p id="erro_mensagem"></p>
+    <form unicorn:submit.prevent.lazy="salvar_task" method="post" class="form-inline justify-content-center mx-3">
+        <button unicorn:click="deletar_todas_as_tasks" id="btn_deletar_tasks" type="button" class="btn btn-danger">Deletar todas as tasks</button>
         <input type="text" unicorn:model.defer="task" id="id_task_input">
+        {% comment %} {{form}} esse formulario desaparece após a inserção {% endcomment %}
         <button unicorn:click="salvar_task" class="btn btn-outline-success">Adicionar nova Task</button>
     </form>
 
@@ -12,8 +13,9 @@
         <div class="card-body row">
           <div class="container">
             <div class="row">
-              <p class="col-8">{{task}}</p>
-              <button id="deleteTask{{task.id}}" class="btn btn-outline-danger">Deletar Task id={{task.id}}</button>
+              <p class="col-8">{{task.titulo}}</p>
+              <button id="deleteTask{{task.id}}" class="btn btn-outline-warning">Editar Task id={{task.id}}</button>
+              <button unicorn:click="deletar_task({{task.id}})" id="deleteTask{{task.id}}" class="btn btn-outline-danger">Deletar Task id={{task.id}}</button>
             </div>
           </div>
         </div>
