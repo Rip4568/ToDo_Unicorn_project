@@ -9,6 +9,11 @@
 {% block content %}
     <p>Token atual: {{csrf_token}}</p>
 
+
+    {% comment %} <form action="">
+      {{form}}
+      {% unicorn 'task-dynamic' %}
+    </form> {% endcomment %} {% comment %} testar o codigo acima e fazer funcionar {% endcomment %}
     {% unicorn 'task-dynamic' %}
     {% for task in tasks %}
       <div class="card mb-1">
