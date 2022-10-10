@@ -1,7 +1,5 @@
-from django.http import QueryDict
 from django_unicorn.components import UnicornView, QuerySetType
 from Task_app.models import Task
-
 class TaskDynamicView(UnicornView):
     tasks: QuerySetType[Task] = Task.objects.all()
     task: str = ""

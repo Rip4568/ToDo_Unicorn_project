@@ -14,8 +14,8 @@
       {{form}}
       {% unicorn 'task-dynamic' %}
     </form> {% endcomment %} {% comment %} testar o codigo acima e fazer funcionar {% endcomment %}
-    {% unicorn 'task-dynamic' %}
-    {% for task in tasks %}
+    {% unicorn 'task-dynamic' tasks=tasks %}
+    {% comment %} {% for task in tasks %}
       <div class="card mb-1">
         <div class="card-body row">
           <div class="container">
@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
     {% comment %} {{request.META.HTTP_COOKIE}} DA PRA USAR {% endcomment %}
     
 {% endblock content %}

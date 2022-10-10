@@ -11,7 +11,7 @@ class HomeTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = TaskForm()
-        context["tasks"] = Task.objects.all().order_by('-criado_em')
+        context["tasks"] = Task.objects.all().reverse()
         return context
     
     template_name = TEMPLATE_NAME_INDEX
