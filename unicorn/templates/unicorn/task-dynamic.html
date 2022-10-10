@@ -24,8 +24,8 @@
               <div class="collapse" id="collapseExtendInformation{{task.id}}">
                 <div class="card card-body">
                   <form unicorn:submit.prevent="atualizar_task({{task.id}})" id="form_atualizar_task{{task.id}}" class="form-inline justify-content-center mx-3">
-                    <input type="text" unicorn:model.lazy="task_up" id="id_task_input_atualizar{{task.id}}" placeholder="Atualizar Task">
-                    <button unicorn:click="atualizar_task({{ task.id }})" id="btn_task_atualizar{{task.id}}" class="btn btn-outline-info btn-sm">Atualizar Task</button>
+                    <input type="text" unicorn:model.lazy="task" id="id_task_input_atualizar{{task.id}}" placeholder="Atualizar Task">
+                    <button unicorn:click="atualizar_task({{ task.id }})" id="btn_task_atualizar{{task.id}}" class="btn btn-outline-info btn-sm">Novo Titulo da Task</button>
                 </form>
                 </div>
               </div>

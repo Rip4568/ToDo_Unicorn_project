@@ -11,7 +11,7 @@ class TaskDynamicView(UnicornView):
     form_class = TaskForm
     tasks: QuerySetType[Task] = Task.objects.none()
     task: str = ""
-    task_up: str = ""
+    #task_up: str = ""
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -42,8 +42,11 @@ class TaskDynamicView(UnicornView):
         self.atualizar_tasks()
         
     def atualizar_task(self,task_id):
-        task_update = Task.objects.get(id=task_id)
-        task_update.titulo = self.task_up
-        self.task_up = ""
-        task_update.save()
-        self.atualizar_tasks()
+        if len(self.task) < 2:
+            pass #necessario para dar erro
+        else:
+            task_update = Task.objects.get(id=task_id)
+            task_update.titulo = self.task
+            task_update.save()
+            self.task = "" #chamando dentro da funcao nao funciona
+            self.atualizar_tasks()
