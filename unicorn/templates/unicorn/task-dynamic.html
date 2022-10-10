@@ -1,12 +1,16 @@
 {% load static %}
+{% load unicorn %}
+{% load i18n %}
 <div>
-    <p id="erro_mensagem"></p>
-    <form unicorn:submit.prevent.lazy="salvar_task" method="post" class="form-inline justify-content-center mx-3">
-        <button unicorn:click="deletar_todas_as_tasks" id="btn_deletar_tasks" type="button" class="btn btn-danger">Deletar todas as tasks</button>
-        <input type="text" unicorn:model.defer="task" id="id_task_input">
-        {% comment %} {{form}} esse formulario desaparece após a inserção {% endcomment %}
-        <button unicorn:click="salvar_task" class="btn btn-outline-success">Adicionar nova Task</button>
-    </form>
+  <link rel="stylesheet" href="{% static 'css/style_messages_error.css' %}">
+  {% unicorn_errors %}
+  <p id="erro_mensagem"></p>
+  <form unicorn:submit.prevent.lazy="salvar_task" class="form-inline justify-content-center mx-3">
+      <button unicorn:click="deletar_todas_as_tasks" id="btn_deletar_tasks" type="button" class="btn btn-danger">Deletar todas as tasks</button>
+      <input type="text" unicorn:model="task" id="id_task_input">
+      {% comment %} <p>form = {{form}}</p> {% endcomment %}
+      <button unicorn:click="salvar_task" class="btn btn-outline-success">Adicionar nova Task</button>
+  </form>
 
     {% for task in tasks %}
       <div class="card mb-1">
