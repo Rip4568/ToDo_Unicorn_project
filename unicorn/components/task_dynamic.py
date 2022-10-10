@@ -12,8 +12,6 @@ class TaskDynamicView(UnicornView):
     tasks: QuerySetType[Task] = Task.objects.all()
     task: str = ""
     
-    
-    """ context["form"] = TaskForm() """
     def atualizar_tasks(self):
         self.tasks = Task.objects.all().reverse()
 
@@ -28,5 +26,6 @@ class TaskDynamicView(UnicornView):
         self.tasks = Task.objects.none()
         
     def deletar_task(self,task_id):
+        print("Funcao chamada")
         Task.objects.get(id=task_id).delete()
         self.atualizar_tasks()
