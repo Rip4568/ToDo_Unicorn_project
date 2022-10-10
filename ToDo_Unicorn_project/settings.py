@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_on_heroku
+#import django_on_heroku
 import dotenv
 dotenv.load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -141,5 +141,3 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 pacotes = ['uni_form','bootstrap4','bootstrap5','tailwind']
 #CRISPY_TEMPLATE_PACK = pacotes[0] #Crispy não instalado
-
-django_on_heroku.settings(locals())
