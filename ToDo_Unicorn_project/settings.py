@@ -129,6 +129,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles/'
 
+""" The component module 'task_dynamic' could not be loaded.
+será que precisa listar oo STATIC_DIRS_FILES ?"""
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

@@ -4,25 +4,15 @@
 
 {% load unicorn %}
 
-{% block title %}Pagina Principal{% endblock title %}
+{% block title %}
+  Pagina Principal
+{% endblock title %}
 
 {% block content %}
-    <p>Token atual: {{csrf_token}}</p>
+  <p>Token atual: {{csrf_token}}</p>
 
-    {% unicorn 'task-dynamic' tasks=tasks %}
-    {% comment %} {% for task in tasks %}
-      <div class="card mb-1">
-        <div class="card-body row">
-          <div class="container">
-            <div class="row">
-              <p class="col-8">{{task.titulo}}</p>
-              <button id="deleteTask{{task.id}}" class="btn btn-outline-warning">Editar Task id={{task.id}}</button>
-              <button id="deleteTask{{task.id}}" class="btn btn-outline-danger">Deletar Task id={{task.id}}</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endfor %} {% endcomment %}
-    {% comment %} {{request.META.HTTP_COOKIE}} DA PRA USAR {% endcomment %}
+  {% unicorn 'task-dynamic' %}
+
+  {% comment %} {{request.META.HTTP_COOKIE}} DA PRA USAR {% endcomment %}
     
 {% endblock content %}

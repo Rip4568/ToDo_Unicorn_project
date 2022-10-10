@@ -1,16 +1,21 @@
+import random
 from django import forms
 from django_unicorn.components import UnicornView, QuerySetType
 from Task_app.models import Task
 
 from Task_app.forms import TaskForm
 
-""" class ValidationForm(forms.Form):
-    task = forms.CharField(max_length=10,min_length=2)
- """
 class TaskDynamicView(UnicornView):
+    v = ['fazer','terminar','começar','concluir','mostar']
+    a = ['o computador novo','o livro comprado recente','a cama','a arrumação do quarto']
     form_class = TaskForm
     tasks: QuerySetType[Task] = Task.objects.none()
     task: str = ""
+    task_up: str = ""
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.atualizar_tasks() #atualzia assim que o componente é incluido no template
     
     def atualizar_tasks(self):
         self.tasks = Task.objects.all().reverse()
@@ -26,6 +31,19 @@ class TaskDynamicView(UnicornView):
         self.tasks = Task.objects.none()
         
     def deletar_task(self,task_id):
-        print("Funcao chamada")
         Task.objects.get(id=task_id).delete()
+        self.tasks = self.tasks.exclude(id=task_id)
+        self.atualizar_tasks()
+        
+    def adicionar_3_tasks_aleatorias(self):
+        for i in range(3):
+            new_task_random_titulo = "{} {}".format(random.choice(self.v),random.choice(self.a))
+            Task.objects.create(titulo=new_task_random_titulo).save()
+        self.atualizar_tasks()
+        
+    def atualizar_task(self,task_id):
+        task_update = Task.objects.get(id=task_id)
+        task_update.titulo = self.task_up
+        self.task_up = ""
+        task_update.save()
         self.atualizar_tasks()
