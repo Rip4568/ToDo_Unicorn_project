@@ -9,7 +9,7 @@ from Task_app.forms import TaskForm
  """
 class TaskDynamicView(UnicornView):
     form_class = TaskForm
-    tasks: QuerySetType[Task] = Task.objects.all()
+    tasks: QuerySetType[Task] = Task.objects.none()
     task: str = ""
     
     def atualizar_tasks(self):
