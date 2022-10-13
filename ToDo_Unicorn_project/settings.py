@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import os
 #import django_on_heroku
@@ -91,7 +91,8 @@ DATABASES = {
     }
 }
 
-
+if str(os.getenv("ESTOU_NO_HEROKU",default=False)) == 'True':
+    DATABASES['default'] = dj_database_url.config()
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
