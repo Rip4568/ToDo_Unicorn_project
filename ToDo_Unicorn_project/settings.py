@@ -27,9 +27,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.getenv("DEBUG",default=False)) == "True"
 
-
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -46,7 +44,7 @@ INSTALLED_APPS = [
     'Task_app',
     #3rd party
     'django_unicorn',
-    'unicorn',
+    #'unicorn',
     'django_extensions',
 ]
 
