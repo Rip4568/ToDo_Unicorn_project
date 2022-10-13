@@ -10,7 +10,7 @@
 
 {% block content %}
   <p>Token atual: {{csrf_token}}</p>
-  {% comment %} {% unicorn 'task-dynamic-v2' %} {% endcomment %}
+  {% unicorn 'task-dynamic-v2' %}
   {% comment %} {% unicorn 'task-dynamic' %} {% endcomment %}
 
   {% comment %} {{request.META.HTTP_COOKIE}} DA PRA USAR {% endcomment %}
