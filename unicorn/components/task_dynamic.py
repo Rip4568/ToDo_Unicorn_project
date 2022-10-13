@@ -1,5 +1,4 @@
 import random
-from django import forms
 from django_unicorn.components import UnicornView, QuerySetType
 from Task_app.models import Task
 
@@ -11,12 +10,12 @@ class TaskDynamicView(UnicornView):
     form_class = TaskForm
     tasks: QuerySetType[Task] = Task.objects.none()
     task: str = ""
-    #task_up: str = ""
+    #task_up: str = "" #é ALTAMENTE recomendavel separar o campo de task do adicionar para o atulizar
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.atualizar_tasks() #atualzia assim que o componente é incluido no template
-    
+
     def atualizar_tasks(self):
         self.tasks = Task.objects.all().reverse()
 
@@ -25,24 +24,25 @@ class TaskDynamicView(UnicornView):
             Task.objects.create(titulo=self.task)#criação e salvamento da nova task
             self.atualizar_tasks()
             self.task = "" #limpar o input
-    
+
     def deletar_todas_as_tasks(self):
         Task.objects.all().delete()
         self.tasks = Task.objects.none()
-        
+
     def deletar_task(self,task_id):
         Task.objects.get(id=task_id).delete()
         self.tasks = self.tasks.exclude(id=task_id)
         self.atualizar_tasks()
-        
+
     def adicionar_3_tasks_aleatorias(self):
         for i in range(3):
             new_task_random_titulo = "{} {}".format(random.choice(self.v),random.choice(self.a))
             Task.objects.create(titulo=new_task_random_titulo).save()
         self.atualizar_tasks()
-        
+
     def atualizar_task(self,task_id):
         if len(self.task) < 2:
+            self.task = ""
             pass #necessario para dar erro
         else:
             task_update = Task.objects.get(id=task_id)

@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.getenv("DEBUG",default=False)) == "True"
+DEBUG = str(os.getenv("DEBUG",default=False)) == "F"
 
 
 ALLOWED_HOSTS = ['*']
@@ -132,6 +132,7 @@ STATIC_ROOT = 'staticfiles/'
 """ The component module 'task_dynamic' could not be loaded.
 será que precisa listar oo STATIC_DIRS_FILES ?"""
 
+#STATICFILES_STORAGE = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -140,7 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #configuração dos arquivos a serem salvos
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = 'media/'
 
 pacotes = ['uni_form','bootstrap4','bootstrap5','tailwind']
 #CRISPY_TEMPLATE_PACK = pacotes[0] #Crispy não instalado
