@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'Task_app',
     #3rd party
     'django_unicorn',
-    #'unicorn',
+#    'unicorn',
     'django_extensions',
 ]
 

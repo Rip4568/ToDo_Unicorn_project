@@ -1,10 +1,13 @@
+from django_unicorn.components import UnicornView
 import random
 from django_unicorn.components import UnicornView, QuerySetType
 from Task_app.models import Task
 
 from Task_app.forms import TaskForm
 
-class TaskDynamicView(UnicornView):
+
+class TaskDynamicV2View(UnicornView):
+
     v = ['fazer','terminar','começar','concluir','mostar']
     a = ['o computador novo','o livro comprado recente','a cama','a arrumação do quarto']
     form_class = TaskForm
