@@ -134,3 +134,4 @@ dmypy.json
 *.ps1
 staticfiles
 ngrok.exe
+chaves-do-cluster-flyapp.png

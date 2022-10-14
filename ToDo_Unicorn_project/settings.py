@@ -165,8 +165,8 @@ UNICORN = {
     "MINIFY_HTML": False,
     "MINIFIED": True,
     "SERIAL": {
-        "ENABLED": False,
+        "ENABLED": os.getenv("ENABLED",default=False) == True,#default False
         "TIMEOUT": 60,
     },
-    "SCRIPT_LOCATION": "append",
+    "SCRIPT_LOCATION": os.getenv("SCRIPT_LOCATION",default="after"),#trocado por "after"
 }
