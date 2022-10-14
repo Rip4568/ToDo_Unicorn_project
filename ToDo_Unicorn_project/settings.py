@@ -3,7 +3,6 @@ from pathlib import Path
 import os
 import dotenv
 dotenv.load_dotenv()
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -35,14 +34,15 @@ INSTALLED_APPS = [
     'Task_app',
     #3rd party
     'django_unicorn',
-#    'unicorn',
     'django_extensions',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     #"whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -89,10 +89,10 @@ DATABASES = {
 }
 
 
-if str(os.getenv("ESTOU_NO_HEROKU",default=True)) == 'True':
+if str(os.getenv("ESTOU_NO_HEROKU",default=False)) == 'True':
     DATABASES['default'] = dj_database_url.config()
 
-DATABASES['default'] = dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -152,8 +152,14 @@ pacotes = ['uni_form','bootstrap4','bootstrap5','tailwind']
 #CRISPY_TEMPLATE_PACK = pacotes[0] #Crispy não instalado
 #STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-
-if str(os.getenv("DJANGO_HEROKU")) == "True":
-    django_heroku.settings(locals())
     
-CSRF_TRUSTED_ORIGINS = ["http://.*","https://.*"]
+CSRF_TRUSTED_ORIGINS = ["http://.*","https://.*","https://todo-unicorn-dj.fly.dev.*"]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://todo-unicorn-dj.fly.dev",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
+CORS_ORIGIN_WHITELIST = ( 'localhost:8000', 'https://todo-unicorn-dj.fly.dev')
