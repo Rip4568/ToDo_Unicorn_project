@@ -22,7 +22,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    "whitenoise.runserver_nostatic",
+    #"whitenoise.runserver_nostatic",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    #"whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,24 +85,20 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'network_db':{
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'Network.sqlite3',
-    },
-    'simulation_db':{
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'Simulation.sqlite3',
     }
 }
 
+
 if str(os.getenv("ESTOU_NO_HEROKU",default=True)) == 'True':
     DATABASES['default'] = dj_database_url.config()
+
+DATABASES['default'] = dj_database_url.config()
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
+]
+""" {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
@@ -113,8 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+    }, """
 
 
 # Internationalization
@@ -133,12 +128,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = 'staticfiles'
 
 """ The component module 'task_dynamic' could not be loaded.
 será que precisa listar oo STATIC_DIRS_FILES ?"""
 
 #STATICFILES_STORAGE = 'static/'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -146,27 +147,13 @@ será que precisa listar oo STATIC_DIRS_FILES ?"""
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #configuração dos arquivos a serem salvos
-MEDIA_URL = '/media/'
-MEDIA_ROOT = 'media/'
 
 pacotes = ['uni_form','bootstrap4','bootstrap5','tailwind']
 #CRISPY_TEMPLATE_PACK = pacotes[0] #Crispy não instalado
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+#STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 
 if str(os.getenv("DJANGO_HEROKU")) == "True":
     django_heroku.settings(locals())
     
 CSRF_TRUSTED_ORIGINS = ["http://.*","https://.*"]
-
-""" UNICORN = {
-    "APPS": ["unicorn",],
-    "CACHE_ALIAS": "default",
-    "MINIFY_HTML": False,
-    "MINIFIED": True,
-    "SERIAL": {
-        "ENABLED": os.getenv("ENABLED",default=False) == True,#default False
-        "TIMEOUT": 60,
-    },
-    "SCRIPT_LOCATION": os.getenv("SCRIPT_LOCATION",default="after"),#trocado por "after"
-} """
