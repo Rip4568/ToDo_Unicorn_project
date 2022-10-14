@@ -159,7 +159,7 @@ if str(os.getenv("DJANGO_HEROKU")) == "True":
     
 CSRF_TRUSTED_ORIGINS = ["http://.*","https://.*"]
 
-UNICORN = {
+""" UNICORN = {
     "APPS": ["unicorn",],
     "CACHE_ALIAS": "default",
     "MINIFY_HTML": False,
@@ -169,4 +169,4 @@ UNICORN = {
         "TIMEOUT": 60,
     },
     "SCRIPT_LOCATION": os.getenv("SCRIPT_LOCATION",default="after"),#trocado por "after"
-}
+} """
