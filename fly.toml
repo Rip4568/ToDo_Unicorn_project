@@ -1,15 +1,15 @@
-# fly.toml file generated for old-firefly-7615 on 2022-10-14T17:43:21-03:00
+# fly.toml file generated for todo-unicorn-django on 2022-10-14T18:12:44-03:00
 
-app = "old-firefly-7615"
+app = "todo-unicorn-django"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
-[deploy]
-  release_command = "python manage.py migrate"
+[build]
+  builder = "paketobuildpacks/builder:base"
 
 [env]
-  PORT = "8000"
+  PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
@@ -17,7 +17,7 @@ processes = []
 
 [[services]]
   http_checks = []
-  internal_port = 8000
+  internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
@@ -40,7 +40,3 @@ processes = []
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
-
-[[statics]]
-  guest_path = "/app/public"
-  url_prefix = "/static/"
