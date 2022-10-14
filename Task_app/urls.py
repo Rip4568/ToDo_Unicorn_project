@@ -6,5 +6,6 @@ app_name = "Task_app"
 urlpatterns = [
     path('',views.HomeTemplateView.as_view(),name='Home'),
     path('deletar_todas_as_tasks/',views.deletar_todas_as_tasks,name='deletar_todas_as_tasks'),
+    path('adicionar_3_tasks_aleatorias/',views.adicionar_3_tasks_aleatorias,name="adicionar_3_tasks_aleatorias"),
     
 ]

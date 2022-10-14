@@ -29,7 +29,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         {% comment %} <a class="dropdown-item" href="#">{% unicorn 'task-delete-all' %}</a> {% endcomment %}
                         <a class="dropdown-item" href="{% url 'Task_app:deletar_todas_as_tasks' %}">Deletar todas as tasks (Sem AJAX)</a>
-                        <a class="dropdown-item" href="#">Adicionar 3 Tasks aleatorias (Sem AJAX)</a>
+                        <a class="dropdown-item" href="{% url 'Task_app:adicionar_3_tasks_aleatorias' %}">Adicionar 3 Tasks aleatorias (Sem AJAX)</a>
                     </div>
                 </li>
                 <li class="nav-item active">

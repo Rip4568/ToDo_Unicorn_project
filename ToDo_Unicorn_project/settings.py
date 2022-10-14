@@ -158,3 +158,15 @@ if str(os.getenv("DJANGO_HEROKU")) == "True":
     django_heroku.settings(locals())
     
 CSRF_TRUSTED_ORIGINS = ["http://.*","https://.*"]
+
+UNICORN = {
+    "APPS": ["unicorn",],
+    "CACHE_ALIAS": "default",
+    "MINIFY_HTML": False,
+    "MINIFIED": True,
+    "SERIAL": {
+        "ENABLED": False,
+        "TIMEOUT": 60,
+    },
+    "SCRIPT_LOCATION": "append",
+}
