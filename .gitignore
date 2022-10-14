@@ -132,3 +132,4 @@ dmypy.json
 #my configurations
 .vscode
 *.ps1
+staticfiles

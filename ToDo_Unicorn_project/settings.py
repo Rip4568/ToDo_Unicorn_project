@@ -74,10 +74,25 @@ WSGI_APPLICATION = 'ToDo_Unicorn_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+""" DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+} """
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'network_db':{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'Network.sqlite3',
+    },
+    'simulation_db':{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'Simulation.sqlite3',
     }
 }
 
@@ -118,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles/'
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 """ The component module 'task_dynamic' could not be loaded.
 será que precisa listar oo STATIC_DIRS_FILES ?"""
