@@ -133,3 +133,4 @@ dmypy.json
 .vscode
 *.ps1
 staticfiles
+ngrok.exe

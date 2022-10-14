@@ -156,3 +156,5 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 if str(os.getenv("DJANGO_HEROKU")) == "True":
     django_heroku.settings(locals())
+    
+CSRF_TRUSTED_ORIGINS = ["http://.*","https://.*"]
