@@ -16,7 +16,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.getenv("DEBUG",default=False)) == "True"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*","https://todo-unicorn-dj.fly.dev",".*","https://todo-unicorn-dj.fly.dev.*"]
 
 # Application definition
 
@@ -153,7 +153,12 @@ pacotes = ['uni_form','bootstrap4','bootstrap5','tailwind']
 #STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
     
-CSRF_TRUSTED_ORIGINS = ["http://.*","https://.*","https://todo-unicorn-dj.fly.dev.*"]
+CSRF_TRUSTED_ORIGINS = ["http://.*",
+                        "https://.*",
+                        "https://todo-unicorn-dj.fly.dev",
+                        "https://todo-unicorn-dj.fly.dev.*",
+                        "http://*.",
+                        "https://*."]
 
 CORS_ALLOWED_ORIGINS = [
     "https://example.com",
@@ -162,4 +167,4 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
 ]
 
-CORS_ORIGIN_WHITELIST = ( 'localhost:8000', 'https://todo-unicorn-dj.fly.dev')
+CORS_ORIGIN_WHITELIST = ( 'localhost:8000', 'https://todo-unicorn-dj.fly.dev','.*')
